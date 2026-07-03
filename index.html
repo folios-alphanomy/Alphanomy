@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Alphanomy Folios - Quantitative Investment Strategies</title>
+    <style>
+        :root {
+            --primary-start: #1a57ff;
+            --primary-end: #d936ff;
+            --primary-gradient: linear-gradient(135deg, var(--primary-start) 0%, var(--primary-end) 100%);
+            --bar-gradient: linear-gradient(90deg, var(--primary-start) 0%, var(--primary-end) 100%);
+            --primary-light: #172a45;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --matt-gold: #c5a059;
+            --matt-gold-hover: #b38f46;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Language Switcher Bar */
+        .lang-switcher {
+            background: #0f172a;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 101;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lang-btn.active {
+            background: var(--matt-gold);
+            color: #0f172a;
+            border-color: var(--matt-gold);
+            font-weight: 600;
+        }
+
+        header {
+            background-color: var(--white);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 45px;
+            z-index: 100;
+        }
+
+        header img {
+            max-width: 220px;
+            height: auto;
+        }
+
+        .hero {
+            background: var(--primary-gradient);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.75rem;
+            color: var(--primary-start);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--primary-gradient);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+            header {
+                top: 85px;
+            }
+        }
+
+        .info-box {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .info-box h3 {
+            color: var(--primary-start);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-left: 4px solid var(--primary-end);
+            padding-left: 10px;
+        }
+
+        .info-box ul {
+            list-style-type: none;
+        }
+
+        .info-box ul li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .info-box ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary-end);
+            font-weight: bold;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-start);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-card h3::before {
+            content: "✓";
+            display: inline-block;
+            background: rgba(217, 54, 255, 0.1);
+            color: var(--primary-end);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.85rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .folios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .folio-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .folio-header {
+            background: var(--primary-gradient);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .folio-header h3 {
+            color: var(--white);
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .folio-tag {
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .folio-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .folio-info {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .folio-info p {
+            margin-bottom: 8px;
+        }
+
+        .folio-info strong {
+            color: var(--primary-start);
+        }
+
+        .pricing-box {
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .pricing-box h4 {
+            font-size: 0.9rem;
+            color: var(--primary-start);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+            border-bottom: 1px dashed var(--border);
+            font-size: 0.9rem;
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+            color: var(--primary-start);
+        }
+
+        .price-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .best-value {
+            color: #10b981;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: #ecfdf5;
+            padding: 1px 6px;
+            border-radius: 4px;
+        }
+
+        .chart-container {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        .chart-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .chart-row {
+            margin-bottom: 18px;
+        }
+
+        .chart-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .chart-bar-wrapper {
+            background: #e2e8f0;
+            height: 24px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-bar {
+            height: 100%;
+            background: var(--bar-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .table-container {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            margin-bottom: 60px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--primary-gradient);
+            color: var(--white);
+            padding: 16px;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+
+        .cta {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-start) 0%, #0f172a 100%);
+            color: var(--white);
+            padding: 50px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta h2 {
+            color: var(--white);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .cta p {
+            color: #94a3b8;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--matt-gold);
+            font-weight: 700;
+            padding: 14px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            border: 2px solid var(--matt-gold);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--matt-gold);
+            color: #1e293b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.3);
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLanguage('en')">English</button>
+        <button class="lang-btn" onclick="setLanguage('hi')">हिन्दी (Hindi)</button>
+        <button class="lang-btn" onclick="setLanguage('kn')">ಕನ್ನಡ (Kannada)</button>
+        <button class="lang-btn" onclick="setLanguage('ta')">தமிழ் (Tamil)</button>
+        <button class="lang-btn" onclick="setLanguage('te')">తెలుగు (Telugu)</button>
+        <button class="lang-btn" onclick="setLanguage('ml')">മലയാളം (Malayalam)</button>
+    </div>
+
+    <header>
+        <img src="https://i.ibb.co/TDDHNQWM/Alphanomy-Header-Logo.png" alt="Alphanomy Header Logo">
+    </header>
+
+    <div class="hero">
+        <h1 id="hero-title">Quantitative investment strategies built for consistent alpha by Alphanomy</h1>
+        <p id="hero-desc">A SEBI-registered research-driven firm building wealth for Indian investors through systematic, data-driven investment strategies.</p>
+    </div>
+
+    <div class="container">
+        
+        <div class="intro-grid">
+            <div class="info-box">
+                <h3 id="mv-title">Our Mission & Vision</h3>
+                <p><strong id="lbl-mission">Mission:</strong> <span id="val-mission">To make institutional-grade wealth management simple, fast, and transparent.</span></p>
+                <p style="margin-top: 10px;"><strong id="lbl-vision">Vision:</strong> <span id="val-vision">A future where every investor executes with the precision of a pro.</span></p>
+            </div>
+            <div class="info-box">
+                <h3 id="cp-title">Core Philosophy</h3>
+                <ul>
+                    <li id="cp-1">Markets reward discipline, not noise</li>
+                    <li id="cp-2">Data over opinions</li>
+                    <li id="cp-3">Process over predictions</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="sec-why">Why Choose Alphanomy Folios?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3 id="f1-t">Research-Backed</h3>
+                <p id="f1-d">Systematic equity research built on real data.</p>
+            </div>
+            <div class="feature-card">
+                <h3 id="f2-t">Transparent</h3>
+                <p id="f2-d">Know every stock, every rule, every rebalancing.</p>
+            </div>
+            <div class="feature-card">
+                <h3 id="f3-t">No Emotions</h3>
+                <p id="f3-d">Algorithm-driven, no guesswork.</p>
+            </div>
+            <div class="feature-card">
+                <h3 id="f4-t">Long-Term</h3>
+                <p id="f4-d">Designed for sustained growth.</p>
+            </div>
+            <div class="feature-card">
+                <h3 id="f5-t">Regulated</h3>
+                <p id="f5-d">SEBI Registered Research Analyst firm.</p>
+            </div>
+            <div class="feature-card">
+                <h3 id="f6-t">Rebalancing</h3>
+                <p id="f6-d">Periodic adjustments for alignment.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="sec-folios">Our Investment Folios</h2>
+        <div class="folios-grid">
+            
+            <!-- MicroPulse -->
+            <div class="folio-card">
+                <div class="folio-header">
+                    <h3>MicroPulse</h3>
+                    <span class="folio-tag" id="p1-tag">Microcap Equities</span>
+                </div>
+                <div class="folio-body">
+                    <div class="folio-info">
+                        <p><strong class="lbl-focus">Focus:</strong> <span id="p1-focus">20 concentrated stocks from Nifty Microcap 250 Index.</span></p>
+                        <p><strong class="lbl-min">Min. Investment:</strong> <span>₹2,00,000</span></p>
+                        <p><strong class="lbl-rebal">Rebalancing:</strong> <span class="val-quarterly">Quarterly</span></p>
+                        <p><strong class="lbl-ideal">Ideal For:</strong> <span id="p1-ideal">Active investors seeking short-term trends with higher risk appetite.</span></p>
+                    </div>
+                    <div class="pricing-box">
+                        <h4 class="lbl-pricing">Pricing Plans</h4>
+                        <div class="price-row"><span class="m3">3 Months</span><span>₹4,500</span></div>
+                        <div class="price-row"><span class="m6">6 Months</span><span>₹7,200</span></div>
+                        <div class="price-row">
+                            <span class="m12">12 Months</span>
+                            <div class="price-right">
+                                <span class="best-value best-val-txt">Best Value</span>
+                                <strong>₹12,000</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Elite Rebound -->
+            <div class="folio-card">
+                <div class="folio-header">
+                    <h3>Elite Rebound</h3>
+                    <span class="folio-tag" id="p2-tag">Large-cap Contrarian</span>
+                </div>
+                <div class="folio-body">
+                    <div class="folio-info">
+                        <p><strong class="lbl-focus">Focus:</strong> <span id="p2-focus">Nifty 50 targeting 10 most beaten-down stocks.</span></p>
+                        <p><strong class="lbl-min">Min. Investment:</strong> <span>₹1,00,000</span></p>
+                        <p><strong class="lbl-rebal">Rebalancing:</strong> <span class="val-monthly">Monthly</span></p>
+                        <p><strong class="lbl-ideal">Ideal For:</strong> <span id="p2-ideal">Investors seeking recovery-led opportunities in blue chips.</span></p>
+                    </div>
+                    <div class="pricing-box">
+                        <h4 class="lbl-pricing">Pricing Plans</h4>
+                        <div class="price-row"><span class="m3">3 Months</span><span>₹4,500</span></div>
+                        <div class="price-row"><span class="m6">6 Months</span><span>₹7,200</span></div>
+                        <div class="price-row">
+                            <span class="m12">12 Months</span>
+                            <div class="price-right">
+                                <span class="best-value best-val-txt">Best Value</span>
+                                <strong>₹12,000</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SectorSurfer -->
+            <div class="folio-card">
+                <div class="folio-header">
+                    <h3>SectorSurfer</h3>
+                    <span class="folio-tag" id="p3-tag">Sector Rotation</span>
+                </div>
+                <div class="folio-body">
+                    <div class="folio-info">
+                        <p><strong class="lbl-focus">Focus:</strong> <span id="p3-focus">Sector-rotation across 20 sector indices ranking momentum-led sectors.</span></p>
+                        <p><strong class="lbl-min">Min. Investment:</strong> <span>₹4,000</span></p>
+                        <p><strong class="lbl-rebal">Rebalancing:</strong> <span class="val-monthly">Monthly</span></p>
+                        <p><strong class="lbl-ideal">Ideal For:</strong> <span id="p3-ideal">Investors wanting to beat market averages by staying in the strongest sector.</span></p>
+                    </div>
+                    <div class="pricing-box">
+                        <h4 class="lbl-pricing">Pricing Plans</h4>
+                        <div class="price-row"><span class="m3">3 Months</span><span>₹2,250</span></div>
+                        <div class="price-row"><span class="m6">6 Months</span><span>₹3,600</span></div>
+                        <div class="price-row">
+                            <span class="m12">12 Months</span>
+                            <div class="price-right">
+                                <span class="best-value best-val-txt">Best Value</span>
+                                <strong>₹6,000</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- StratSpectrum -->
+            <div class="folio-card">
+                <div class="folio-header">
+                    <h3>StratSpectrum</h3>
+                    <span class="folio-tag" id="p4-tag">Smart-Beta ETF</span>
+                </div>
+                <div class="folio-body">
+                    <div class="folio-info">
+                        <p><strong class="lbl-focus">Focus:</strong> <span id="p4-focus">Nifty Strategy Index holding 10 strategy indices (Momentum, Quality, Value, etc.).</span></p>
+                        <p><strong class="lbl-min">Min. Investment:</strong> <span>₹6,000</span></p>
+                        <p><strong class="lbl-rebal">Rebalancing:</strong> <span class="val-half-yearly">Half Yearly</span></p>
+                        <p><strong class="lbl-ideal">Ideal For:</strong> <span id="p4-ideal">Retail investors preferring lower volatility & "set-and-forget" approach.</span></p>
+                    </div>
+                    <div class="pricing-box">
+                        <h4 class="lbl-pricing">Pricing Plans</h4>
+                        <div class="price-row"><span class="m3">3 Months</span><span class="val-na">Not Applicable</span></div>
+                        <div class="price-row"><span class="m6">6 Months</span><span>₹2,800</span></div>
+                        <div class="price-row">
+                            <span class="m12">12 Months</span>
+                            <div class="price-right">
+                                <span class="best-value best-val-txt">Best Value</span>
+                                <strong>₹4,800</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="section-title" id="sec-reward">Reward Efficiency (Risk-Reward Ratio)</h2>
+        <div class="chart-container">
+            <p class="chart-subtitle" id="chart-sub">Sharpe Ratio: Higher indicates better returns per unit of volatility (Based on Backtested Data Feb 2009 - Jun 2026)</p>
+            
+            <div class="chart-row">
+                <div class="chart-label"><span>MicroPulse</span><span>1.28</span></div>
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar" style="width: 95%;">1.28</div>
+                </div>
+            </div>
+
+            <div class="chart-row">
+                <div class="chart-label"><span>SectorSurfer</span><span>1.21</span></div>
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar" style="width: 88%;">1.21</div>
+                </div>
+            </div>
+
+            <div class="chart-row">
+                <div class="chart-label"><span>StratSpectrum</span><span>1.00</span></div>
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar" style="width: 72%;">1.00</div>
+                </div>
+            </div>
+
+            <div class="chart-row">
+                <div class="chart-label"><span>Elite Rebound</span><span>0.90</span></div>
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar" style="width: 65%;">0.90</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="sec-matrix">Strategy Comparison Matrix</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th id="th-feature">Feature</th>
+                        <th>MicroPulse</th>
+                        <th>Elite Rebound</th>
+                        <th>SectorSurfer</th>
+                        <th>StratSpectrum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong id="mat-theme">Core Theme</strong></td>
+                        <td class="mat-v-mpm">Microcap Momentum</td>
+                        <td class="mat-v-bcc">Blue-Chip Contrarian</td>
+                        <td class="mat-v-sr">Sector Rotation</td>
+                        <td class="mat-v-sbs">Smart-Beta Style</td>
+                    </tr>
+                    <tr>
+                        <td><strong id="mat-risk">Risk Profile</strong></td>
+                        <td class="mat-v-agg">Aggressive</td>
+                        <td class="mat-v-mod">Moderate</td>
+                        <td class="mat-v-mod">Moderate</td>
+                        <td class="mat-v-cons">Conservative</td>
+                    </tr>
+                    <tr>
+                        <td><strong id="mat-rebal">Rebalancing</strong></td>
+                        <td class="val-quarterly">Quarterly</td>
+                        <td class="val-monthly">Monthly</td>
+                        <td class="val-monthly">Monthly</td>
+                        <td class="val-half-yearly">Half-Yearly</td>
+                    </tr>
+                    <tr>
+                        <td><strong id="mat-cap">Min. Capital</strong></td>
+                        <td>₹2,00,000</td>
+                        <td>₹1,00,000</td>
+                        <td>₹4,000</td>
+                        <td>₹6,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="cta">
+            <h2 id="cta-title">Build Your Quantitative Edge</h2>
+            <p id="cta-desc">Ready to start your structured investment journey with institutional precision?</p>
+            <a href="https://folios.alphanomy.com" class="btn" target="_blank" id="cta-btn">Register Now</a>
+        </div>
+
+        <footer>
+            <p><strong>ALPHANOMY SOLUTIONS PRIVATE LIMITED</strong></p>
+            <p id="foot-sebi">SEBI Registered Research Analyst: INH000024806</p>
+            <p style="margin-top: 10px; font-size: 0.75rem;" id="foot-disc">Disclaimer: Investment in securities market are subject to market risks. Read all the related documents carefully before investing.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                pageTitle: "Alphanomy Folios - Quantitative Investment Strategies",
+                heroTitle: "Quantitative investment strategies built for consistent alpha by Alphanomy",
+                heroDesc: "A SEBI-registered research-driven firm building wealth for Indian investors through systematic, data-driven investment strategies.",
+                mvTitle: "Our Mission & Vision",
+                lblMission: "Mission:",
+                valMission: "To make institutional-grade wealth management simple, fast, and transparent.",
+                lblVision: "Vision:",
+                valVision: "A future where every investor executes with the precision of a pro.",
+                cpTitle: "Core Philosophy",
+                cp1: "Markets reward discipline, not noise",
+                cp2: "Data over opinions",
+                cp3: "Process over predictions",
+                secWhy: "Why Choose Alphanomy Folios?",
+                f1_t: "Research-Backed", f1_d: "Systematic equity research built on real data.",
+                f2_t: "Transparent", f2_d: "Know every stock, every rule, every rebalancing.",
+                f3_t: "No Emotions", f3_d: "Algorithm-driven, no guesswork.",
+                f4_t: "Long-Term", f4_d: "Designed for sustained growth.",
+                f5_t: "Regulated", f5_d: "SEBI Registered Research Analyst firm.",
+                f6_t: "Rebalancing", f6_d: "Periodic adjustments for alignment.",
+                secFolios: "Our Investment Folios",
+                p1_tag: "Microcap Equities",
+                p1_focus: "20 concentrated stocks from Nifty Microcap 250 Index.",
+                p1_ideal: "Active investors seeking short-term trends with higher risk appetite.",
+                p2_tag: "Large-cap Contrarian",
+                p2_focus: "Nifty 50 targeting 10 most beaten-down stocks.",
+                p2_ideal: "Investors seeking recovery-led opportunities in blue chips.",
+                p3_tag: "Sector Rotation",
+                p3_focus: "Sector-rotation across 20 sector indices ranking momentum-led sectors.",
+                p3_ideal: "Investors wanting to beat market averages by staying in the strongest sector.",
+                p4_tag: "Smart-Beta ETF",
+                p4_focus: "Nifty Strategy Index holding 10 strategy indices (Momentum, Quality, Value, etc.).",
+                p4_ideal: "Retail investors preferring lower volatility & 'set-and-forget' approach.",
+                lblFocus: "Focus:", lblMin: "Min. Investment:", lblRebal: "Rebalancing:", lblIdeal: "Ideal For:",
+                valQuarterly: "Quarterly", valMonthly: "Monthly", valHalfYearly: "Half Yearly", valNA: "Not Applicable",
+                lblPricing: "Pricing Plans", m3: "3 Months", m6: "6 Months", m12: "12 Months", bestValTxt: "Best Value",
+                secReward: "Reward Efficiency (Risk-Reward Ratio)",
+                chartSub: "Sharpe Ratio: Higher indicates better returns per unit of volatility (Based on Backtested Data Feb 2009 - Jun 2026)",
+                secMatrix: "Strategy Comparison Matrix",
+                thFeature: "Feature", matTheme: "Core Theme", matRisk: "Risk Profile", matRebal: "Rebalancing", matCap: "Min. Capital",
+                matV_mpm: "Microcap Momentum", matV_bcc: "Blue-Chip Contrarian", matV_sr: "Sector Rotation", matV_sbs: "Smart-Beta Style",
+                matV_agg: "Aggressive", matV_mod: "Moderate", matV_cons: "Conservative",
+                ctaTitle: "Build Your Quantitative Edge",
+                ctaDesc: "Ready to start your structured investment journey with institutional precision?",
+                ctaBtn: "Register Now",
+                footSebi: "SEBI Registered Research Analyst: INH000024806",
+                footDisc: "Disclaimer: Investment in securities market are subject to market risks. Read all the related documents carefully before investing."
+            },
+            hi: {
+                pageTitle: "अल्फ़ानॉमी फोलियोज़ - मात्रात्मक निवेश रणनीतियाँ",
+                heroTitle: "अल्फ़ानॉमी द्वारा निरंतर अल्फा के लिए निर्मित मात्रात्मक निवेश रणनीतियाँ",
+                heroDesc: "एक सेबी-पंजीकृत अनुसंधान-संचालित फर्म जो व्यवस्थित, डेटा-संचालित निवेश रणनीतियों के माध्यम से भारतीय निवेशकों के लिए संपत्ति का निर्माण करती है।",
+                mvTitle: "हमारा मिशन और विज़न",
+                lblMission: "मिशन:",
+                valMission: "संस्थागत स्तर के धन प्रबंधन को सरल, तेज़ और पारदर्शी बनाना।",
+                lblVision: "विज़न:",
+                valVision: "एक ऐसा भविष्य जहां प्रत्येक निवेशक एक पेशेवर की सटीकता के साथ निवेश निष्पादित करे।",
+                cpTitle: "मूल दर्शन",
+                cp1: "बाज़ार अनुशासन को पुरस्कृत करता है, शोर को नहीं",
+                cp2: "रायों से ऊपर डेटा",
+                cp3: "भविष्यवाणियों से ऊपर प्रक्रिया",
+                secWhy: "अल्फ़ानॉमी फोलियोज़ क्यों चुनें?",
+                f1_t: "अनुसंधान-आधारित", f1_d: "वास्तविक डेटा पर निर्मित व्यवस्थित इक्विटी अनुसंधान।",
+                f2_t: "पारदर्शी", f2_d: "हर स्टॉक, हर नियम, हर रीबैलेंसिंग की जानकारी रखें।",
+                f3_t: "भावना रहित", f3_d: "एल्गोरिदम-संचालित, कोई अनुमान नहीं।",
+                f4_t: "दीर्घकालिक", f4_d: "सतत विकास के लिए डिज़ाइन किया गया।",
+                f5_t: "विनियमित", f5_d: "सेबी पंजीकृत रिसर्च एनालिस्ट फर्म।",
+                f6_t: "रीबैलेंसिंग", f6_d: "संरेखण के लिए समय-समय पर समायोजन।",
+                secFolios: "हमारे निवेश फोलियोज़",
+                p1_tag: "माइक्रोकैप इक्विटीज़",
+                p1_focus: "निफ्टी माइक्रोकैप 250 इंडेक्स से 20 केंद्रित स्टॉक।",
+                p1_ideal: "सक्रिय निवेशक जो उच्च जोखिम क्षमता के साथ अल्पकालिक रुझान तलाश रहे हैं।",
+                p2_tag: "लार्ज-कैप कॉन्ट्रेरियन",
+                p2_focus: "निफ्टी 50 के 10 सबसे अधिक गिरे हुए शेयरों को लक्षित करना।",
+                p2_ideal: "ब्लू चिप्स में रिकवरी-आधारित अवसरों की तलाश करने वाले निवेशक।",
+                p3_tag: "सेक्टर रोटेशन",
+                p3_focus: "20 सेक्टर इंडेक्स में सेक्टर-रोटेशन जो मोमेंटम-आधारित सेक्टरों को रैंक करता है।",
+                p3_ideal: "सबसे मजबूत सेक्टर में रहकर मार्केट एवरेज को मात देने की इच्छा रखने वाले निवेशक।",
+                p4_tag: "स्मार्ट-बीटा ETF",
+                p4_focus: "निफ्टी स्ट्रैटेजी इंडेक्स जिसमें 10 स्ट्रैटेजी इंडेक्स (मोमेंटम, क्वालिटी, वैल्यू आदि) शामिल हैं।",
+                p4_ideal: "कम उतार-चढ़ाव और 'सेट-एंड-भूल जाओ' दृष्टिकोण पसंद करने वाले खुदरा निवेशक।",
+                lblFocus: "फोकस:", lblMin: "न्यूनतम निवेश:", lblRebal: "रीबैलेंसिंग:", lblIdeal: "आदर्श फॉर:",
+                valQuarterly: "त्रैमासिक", valMonthly: "मासिक", valHalfYearly: "अर्ध-वार्षिक", valNA: "लागू नहीं",
+                lblPricing: "मूल्य निर्धारण योजनाएं", m3: "3 महीने", m6: "6 महीने", m12: "12 महीने", bestValTxt: "सर्वोत्तम मूल्य",
+                secReward: "इनाम दक्षता (जोखिम-इनाम अनुपात)",
+                chartSub: "शार्प अनुपात: उच्चतर अस्थिरता की प्रति इकाई बेहतर रिटर्न को दर्शाता है (बैकटेस्टेड डेटा फरवरी 2009 - जून 2026 के आधार पर)",
+                secMatrix: "रणनीति तुलना मैट्रिक्स",
+                thFeature: "विशेषता", matTheme: "मुख्य थीम", matRisk: "जोखिम प्रोफ़ाइल", matRebal: "रीबैलेंसिंग", matCap: "न्यूनतम पूंजी",
+                matV_mpm: "माइक्रोकैप मोमेंटम", matV_bcc: "ब्लू-चिप कॉन्ट्रेरियन", matV_sr: "सेक्टर रोटेशन", matV_sbs: "स्मार्ट-बीटा स्टाइल",
+                matV_agg: "आक्रामक", matV_mod: "मध्यम", matV_cons: "रूढ़िवादी",
+                ctaTitle: "अपना क्वांटिटेटिव एज बनाएं",
+                ctaDesc: "संस्थागत सटीकता के साथ अपनी संरचित निवेश यात्रा शुरू करने के लिए तैयार हैं?",
+                ctaBtn: "अभी पंजीकरण करें",
+                footSebi: "सेबी पंजीकृत रिसर्च एनालिस्ट: INH000024806",
+                footDisc: "अस्वीकरण: प्रतिभूति बाजार में निवेश बाजार जोखिमों के अधीन हैं। निवेश करने से पहले सभी संबंधित दस्तावेजों को ध्यान से पढ़ें।"
+            },
+            kn: {
+                pageTitle: "ಆಲ್ಫಾನಮಿ ಫೋಲಿಯೋಸ್ - ಕ್ವಾಂಟಿಟೇಟಿವ್ ಹೂಡಿಕೆ ತಂತ್ರಗಳು",
+                heroTitle: "ಆಲ್ಫಾನಮಿಯಿಂದ ಸ್ಥಿರವಾದ ಆಲ್ಫಾಗಾಗಿ ನಿರ್ಮಿಸಲಾದ ಕ್ವಾಂಟಿಟೇಟಿವ್ ಹೂಡಿಕೆ ತಂತ್ರಗಳು",
+                heroDesc: "ವ್ಯವಸ್ಥಿತ, ಡೇಟಾ-ಚಾಲಿತ ಹೂಡಿಕೆ ತಂತ್ರಗಳ ಮೂಲಕ ಭಾರತೀಯ ಹೂಡಿಕೆದಾರರಿಗೆ ಸಂಪತ್ತನ್ನು ನಿರ್ಮಿಸುವ ಸೆಬಿ-ನೋಂದಾಯಿತ ಸಂಶೋಧನೆ-ಆಧಾರಿತ ಸಂಸ್ಥೆ.",
+                mvTitle: "ನಮ್ಮ ಮಿಷನ್ ಮತ್ತು ವಿಷನ್",
+                lblMission: "ಮಿಷನ್:",
+                valMission: "ಸಂಸ್ಥಾಗತ ಮಟ್ಟದ ಸಂಪತ್ತು ನಿರ್ವಹಣೆಯನ್ನು ಸರಳ, ವೇಗ ಮತ್ತು ಪಾರದರ್ಶಕವಾಗಿಸುವುದು.",
+                lblVision: "ವಿಷನ್:",
+                valVision: "ಪ್ರತಿಯೊಬ್ಬ ಹೂಡಿಕೆದಾರರು ಪ್ರೊಫೆಷನಲ್ ನಿಖರತೆಯೊಂದಿಗೆ ಕಾರ್ಯಗತಗೊಳಿಸುವ ಭವಿಷ್ಯ.",
+                cpTitle: "ಕೋರ್ ಫಿಲಾಸಫಿ",
+                cp1: "ಮಾರುಕಟ್ಟೆಗಳು ಶಿಸ್ತಿಗೆ ಪ್ರತಿಫಲ ನೀಡುತ್ತವೆ, ಗದ್ದಲಕ್ಕಲ್ಲ",
+                cp2: "ಅಭಿಪ್ರಾಯಗಳಿಗಿಂತ ಡೇಟಾ ಮುಖ್ಯ",
+                cp3: "ಮುನ್ಸೂಚನೆಗಳಿಗಿಂತ ಪ್ರಕ್ರಿಯೆ ಮುಖ್ಯ",
+                secWhy: "ಆಲ್ಫಾನಮಿ ಫೋಲಿಯೊಗಳನ್ನು ಏಕೆ ಆರಿಸಬೇಕು?",
+                f1_t: "ಸಂಶೋಧನೆ-ಬೆಂಬಲಿತ", f1_d: "ನೈಜ ಡೇಟಾದ ಮೇಲೆ ನಿರ್ಮಿಸಲಾದ ವ್ಯವಸ್ಥಿತ ಈಕ್ವಿಟಿ ಸಂಶೋಧನೆ.",
+                f2_t: "ಪಾರದರ್ಶಕ", f2_d: "ಪ್ರತಿ ಸ್ಟಾಕ್, ಪ್ರತಿ ನಿಯಮ, ಪ್ರತಿ ಮರುಸಮತೋಲನವನ್ನು ತಿಳಿಯಿರಿ.",
+                f3_t: "ಭಾವನೆಗಳಿಲ್ಲ", f3_d: "ಅಲ್ಗಾರಿದಮ್-ಚಾಲಿತ, ಯಾವುದೇ ಊಹೆಗಳಿಲ್ಲ.",
+                f4_t: "ದೀರ್ಘಾವಧಿ", f4_d: "ನಿರಂತರ ಬೆಳವಣಿಗೆಗಾಗಿ ವಿನ್ಯಾಸಗೊಳಿಸಲಾಗಿದೆ.",
+                f5_t: "ನಿಯಂತ್ರಿತ", f5_d: "ಸೆಬಿ ನೋಂದಾಯಿತ ಸಂಶೋಧನಾ ವಿಶ್ಲೇಷಕ ಸಂಸ್ಥೆ.",
+                f6_t: "ಮರುಸಮತೋಲನ", f6_d: "ಜೋಡಣೆಗಾಗಿ ನಿಯತಕಾಲಿಕ ಹೊಂದಾಣಿಕೆಗಳು.",
+                secFolios: "ನಮ್ಮ ಹೂಡಿಕೆ ಫೋಲಿಯೋಗಳು",
+                p1_tag: "ಮೈಕ್ರೋಕ್ಯಾಪ್ ಈಕ್ವಿಟೀಸ್",
+                p1_focus: "ನಿಫ್ಟಿ ಮೈಕ್ರೋಕ್ಯಾಪ್ 250 ಇಂಡೆಕ್ಸ್‌ನಿಂದ 20 ಕೇಂದ್ರೀಕೃತ ಸ್ಟಾಕ್‌ಗಳು.",
+                p1_ideal: "ಹೆಚ್ಚಿನ ಅಪಾಯದ ಹಸಿವಿನೊಂದಿಗೆ ಅಲ್ಪಾವಧಿಯ ಪ್ರವೃತ್ತಿಗಳನ್ನು ಬಯಸುವ ಸಕ್ರಿಯ ಹೂಡಿಕೆದಾರರು.",
+                p2_tag: "ಲಾರ್ಜ್-ಕ್ಯಾಪ್ ಕಾಂಟ್ರೇರಿಯನ್",
+                p2_focus: "ನಿಫ್ಟಿ 50 ಅತ್ಯಂತ ಕುಸಿದಿರುವ 10 ಸ್ಟಾಕ್‌ಗಳನ್ನು ಗುರಿಯಾಗಿಸಿಕೊಂಡಿದೆ.",
+                p2_ideal: "ಬ್ಲೂ ಚಿಪ್ಸ್‌ಗಳಲ್ಲಿ ಚೇತರಿಕೆ ಆಧಾರಿತ ಅವಕಾಶಗಳನ್ನು ಹುಡುಕುತ್ತಿರುವ ಹೂಡಿಕೆದಾರರು.",
+                p3_tag: "ಸೆಕ್ಟರ್ ರೋಟೇಶನ್",
+                p3_focus: "ಮೊಮೆಂಟಮ್ ನೇತೃತ್ವದ ವಲಯಗಳನ್ನು ಶ್ರೇಣೀಕರಿಸುವ 20 ಸೆಕ್ಟರ್ ಸೂಚ್ಯಂಕಗಳಲ್ಲಿ ಸೆಕ್ಟರ್ ರೋಟೇಶನ್.",
+                p3_ideal: "ಅತ್ಯಂತ ಬಲವಾದ ವಲಯದಲ್ಲಿ ಉಳಿಯುವ ಮೂಲಕ ಮಾರುಕಟ್ಟೆ ಸರಾಸರಿಯನ್ನು ಸೋಲಿಸಲು ಬಯಸುವ ಹೂಡಿಕೆದಾರರು.",
+                p4_tag: "ಸ್ಮಾರ್ಟ್-ಬೀಟಾ ETF",
+                p4_focus: "10 ಕಾರ್ಯತಂತ್ರ ಸೂಚ್ಯಂಕಗಳನ್ನು ಹೊಂದಿರುವ ನಿಫ್ಟಿ ಸ್ಟ್ರಾಟಜಿ ಇಂಡೆಕ್ಸ್ (ಮೊಮೆಂಟಮ್, ಕ್ವಾಲಿಟಿ, ವ್ಯಾಲ್ಯೂ ಇತ್ಯಾದಿ).",
+                p4_ideal: "ಕಡಿಮೆ ಚಂಚಲತೆ ಮತ್ತು 'ಹೊಂದಿಸಿ ಮತ್ತು ಮರೆತುಬಿಡಿ' ವಿಧಾನವನ್ನು ಇಷ್ಟಪಡುವ ಚಿಲ್ಲರೆ ಹೂಡಿಕೆದಾರರು.",
+                lblFocus: "ಫೋಕಸ್:", lblMin: "ಕನಿಷ್ಠ ಹೂಡಿಕೆ:", lblRebal: "ಮರುಸಮತೋಲನ:", lblIdeal: "ಇವರಿಗೆ ಸೂಕ್ತವಾಗಿದೆ:",
+                valQuarterly: "ತ್ರೈಮಾಸಿಕ", valMonthly: "ಮಾಸಿಕ", valHalfYearly: "ಅರ್ಧ ವಾರ್ಷಿಕ", valNA: "ಅನ್ವಯಿಸುವುದಿಲ್ಲ",
+                lblPricing: "ಬೆಲೆ ಯೋಜನೆಗಳು", m3: "3 ತಿಂಗಳು", m6: "6 ತಿಂಗಳು", m12: "12 ತಿಂಗಳು", bestValTxt: "ಅುತ್ತಮ ಮೌಲ್ಯ",
+                secReward: "ರಿವಾರ್ಡ್ ದಕ್ಷತೆ (ಅಪಾಯ-ಪ್ರತಿಫಲ ಅನುಪಾತ)",
+                chartSub: "ಶಾರ್ಪ್ ಅನುಪಾತ: ಹೆಚ್ಚಿನದು ಚಂಚಲತೆಯ ಪ್ರತಿ ಯೂನಿಟ್‌ಗೆ ಉತ್ತಮ ಆದಾಯವನ್ನು ಸೂಚಿಸುತ್ತದೆ (ಫೆಬ್ರವರಿ 2009 - ಜೂನ್ 2026 ರ ಬ್ಯಾಕ್‌ಟೆಸ್ಟ್ ಡೇಟಾ ಆಧಾರಿತ)",
+                secMatrix: "ಕಾರ್ಯತಂತ್ರ ಹೋಲಿಕೆ ಮ್ಯಾಟ್ರಿಕ್ಸ್",
+                thFeature: "ವೈಶಿಷ್ಟ್ಯ", matTheme: "ಕೋರ್ ಥೀಮ್", matRisk: "ರಿಸ್ಕ್ ಪ್ರೊಫೈಲ್", matRebal: "ಮರುಸಮತೋಲನ", matCap: "ಕನಿಷ್ಠ ಬಂಡವಾಳ",
+                matV_mpm: "ಮೈಕ್ರೋಕ್ಯಾಪ್ ಮೊಮೆಂಟಮ್", matV_bcc: "ಬ್ಲೂ-ಚಿಪ್ ಕಾಂಟ್ರೇರಿಯನ್", matV_sr: "ಸೆಕ್ಟರ್ ರೋಟೇಶನ್", matV_sbs: "ಸ್ಮಾರ್ಟ್-ಬೀಟಾ ಶೈಲಿ",
+                matV_agg: "ಆಕ್ರಮಣಕಾರಿ", matV_mod: "ಮಧ್ಯಮ", matV_cons: "ಸಂಪ್ರದಾಯವಾದಿ",
+                ctaTitle: "ನಿಮ್ಮ ಕ್ವಾಂಟಿಟೇಟಿವ್ ಎಡ್ಜ್ ಅನ್ನು ನಿರ್ಮಿಸಿ",
+                ctaDesc: "ಸಂಸ್ಥಾಗತ ನಿಖರತೆಯೊಂದಿಗೆ ನಿಮ್ಮ ರಚನಾತ್ಮಕ ಹೂಡಿಕೆ ಪ್ರಯಾಣವನ್ನು ಪ್ರಾರಂಭಿಸಲು ಸಿದ್ಧರಿದ್ದೀರಾ?",
+                ctaBtn: "ಈಗಲೇ ನೋಂದಾಯಿಸಿ",
+                footSebi: "ಸೆಬಿ ನೋಂದಾಯಿತ ಸಂಶೋಧನಾ ವಿಶ್ಲೇಷಕ: INH000024806",
+                footDisc: "ಹಕ್ಕುತ್ಯಾಗ: ಸೆಕ್ಯೂರಿಟೀಸ್ ಮಾರುಕಟ್ಟೆಯಲ್ಲಿನ ಹೂಡಿಕೆಗಳು ಮಾರುಕಟ್ಟೆ ಅಪಾಯಗಳಿಗೆ ಒಳಪಟ್ಟಿರುತ್ತವೆ. ಹೂಡಿಕೆ ಮಾಡುವ ಮುನ್ನ ಎಲ್ಲಾ ಸಂಬಂಧಿತ ದಾಖಲೆಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಓದಿ."
+            },
+            ta: {
+                pageTitle: "அல்ஃபானமி ஃபோலியோஸ் - அளவுசார் முதலீட்டு உத்திகள்",
+                heroTitle: "அல்ஃபானமியின் நிலையான ஆல்ஃபாவிற்காக உருவாக்கப்பட்ட அளவுசார் முதலீட்டு உத்திகள்",
+                heroDesc: "முறையான, தரவு உந்துதல் முதலீட்டு உத்திகள் மூலம் இந்திய முதலீட்டாளர்களுக்கு செல்வத்தை உருவாக்கும் ஒரு செபி (SEBI) பதிவுசெய்த ஆராய்ச்சி சார்ந்த நிறுவனம்.",
+                mvTitle: "எங்கள் நோக்கம் & பார்வை",
+                lblMission: "நோக்கம்:",
+                valMission: "நிறுவன அளவிலான செல்வ மேலாண்மையை எளிமையாகவும், வேகமாகவும், வெளிப்படையானதாகவும் மாற்றுவது.",
+                lblVision: "பார்வை:",
+                valVision: "ஒவ்வொரு முதலீட்டாளரும் ஒரு தொழில்முறை நிபுணரின் துல்லியத்துடன் செயல்படும் ஒரு எதிர்காலம்.",
+                cpTitle: "முக்கிய தத்துவம்",
+                cp1: "சந்தைகள் ஒழுக்கத்திற்கு வெகுமதி அளிக்கின்றன, சத்தத்திற்கு அல்ல",
+                cp2: "கருத்துக்களை விட தரவு முக்கியம்",
+                cp3: "கணிப்புகளை விட செயல்முறை முக்கியம்",
+                secWhy: "ஏன் அல்ஃபானமி ஃபோலியோஸை தேர்வு செய்ய வேண்டும்?",
+                f1_t: "ஆராய்ச்சி ஆதரவு", f1_d: "உண்மையான தரவுகளில் கட்டமைக்கப்பட்ட முறையான ஈக்விட்டி ஆராய்ச்சி.",
+                f2_t: "வெளிப்படையானது", f2_d: "ஒவ்வொரு பங்குகளையும், ஒவ்வொரு விதியையும், ஒவ்வொரு மறுசீரமைப்பையும் அறிந்து கொள்ளுங்கள்.",
+                f3_t: "உணர்ச்சிகள் இல்லை", f3_d: "அல்காரிதம் உந்துதல், யூகங்கள் இல்லை.",
+                f4_t: "நீண்ட கால", f4_d: "நிலையான வளர்ச்சிக்காக வடிவமைக்கப்பட்டுள்ளது.",
+                f5_t: "ஒழுங்குபடுத்தப்பட்டது", f5_d: "செபி பதிவு செய்த ஆராய்ச்சி ஆய்வாளர் நிறுவனம்.",
+                f6_t: "மறுசீரமைப்பு", f6_d: "சீரமைப்பிற்கான அவ்வப்போதைய மாற்றங்கள்.",
+                secFolios: "எங்கள் முதலீட்டு ஃபோலியோக்கள்",
+                p1_tag: "மைக்ரோகேப் ஈக்விட்டிகள்",
+                p1_focus: "நிஃப்டி மைக்ரோகேப் 250 குறியீட்டிலிருந்து 20 செறிவூட்டப்பட்ட பங்குகள்.",
+                p1_ideal: "அதிக ஆபத்து எடுக்கும் திறன் கொண்ட, குறுகிய கால போக்குகளைத் தேடும் செயலில் உள்ள முதலீட்டாளர்கள்.",
+                p2_tag: "லார்ஜ்கேப் கான்ட்ராரியன்",
+                p2_focus: "நிஃப்டி 50 இன் மிகவும் சரிந்த 10 பங்குகளை இலக்காகக் கொண்டது.",
+                p2_ideal: "ப்ளூ சிப்ஸில் மீட்பு சார்ந்த வாய்ப்புகளைத் தேடும் முதலீட்டாளர்கள்.",
+                p3_tag: "செக்டார் ரொட்டேஷன்",
+                p3_focus: "மொமண்டம் உந்துதல் துறைகளை வரிசைப்படுத்தும் 20 துறை குறியீடுகளில் செக்டார் ரொட்டேஷன்.",
+                p3_ideal: "மிகவும் வலுவான துறையில் இருப்பதன் மூலம் சந்தை சராசரியை வெல்ல விரும்பும் முதலீட்டாளர்கள்.",
+                p4_tag: "ஸ்மார்ட்-பீட்டா ETF",
+                p4_focus: "10 உத்தி குறியீடுகளைக் கொண்ட நிஃப்டி உத்தி குறியீடு (மொமண்டம், தரம், மதிப்பு போன்றவை).",
+                p4_ideal: "குறைந்த ஏற்ற இறக்கம் மற்றும் 'அமைத்துவிட்டு மறக்கும்' அணுகுமுறையை விரும்பும் சில்லறை முதலீட்டாளர்கள்.",
+                lblFocus: "இலக்கு:", lblMin: "குறைந்தபட்ச முதலீடு:", lblRebal: "மறுசீரமைப்பு:", lblIdeal: "சிறந்தது:",
+                valQuarterly: "காலாண்டு", valMonthly: "மாதாந்திர", valHalfYearly: "அரை ஆண்டு", valNA: "பொருந்தாது",
+                lblPricing: "விலை திட்டங்கள்", m3: "3 மாதங்கள்", m6: "6 மாதங்கள்", m12: "12 மாதங்கள்", bestValTxt: "சிறந்த மதிப்பு",
+                secReward: "விருது செயல்திறன் (ஆபத்து-வெகுமதி விகிதம்)",
+                chartSub: "ஷார்ப் விகிதம்: அதிக விகிதம் ஏற்ற இறக்கத்தின் ஒரு யூனிட்டிற்கு சிறந்த வருவாயைக் குறிக்கிறது (பிப்ரவரி 2009 - ஜூன் 2026 வரையிலான பேக்டெஸ்ட் தரவுகளின் அடிப்படையில்)",
+                secMatrix: "உத்தி ஒப்பீட்டு மேட்ரிக்ஸ்",
+                thFeature: "அம்சம்", matTheme: "முக்கிய தீம்", matRisk: "ஆபத்து விவரம்", matRebal: "மறுசீரமைப்பு", matCap: "குறைந்தபட்ச மூலதனம்",
+                matV_mpm: "மைக்ரோகேப் மொமண்டம்", matV_bcc: "ப்ளூ-சிப் கான்ட்ராரியன்", matV_sr: "செக்டார் ரொட்டேஷன்", matV_sbs: "ஸ்மார்ட்-பீட்டா பாணி",
+                matV_agg: "தீவிரமானது", matV_mod: "மிதமானது", matV_cons: "பழமைவாத",
+                ctaTitle: "உங்கள் அளவுசார் விளிம்பை உருவாக்குங்கள்",
+                ctaDesc: "நிறுவன துல்லியத்துடன் உங்கள் கட்டமைக்கப்பட்ட முதலீட்டு பயணத்தை தொடங்க தயாராக இருக்கிறீர்களா?",
+                ctaBtn: "இப்போது பதிவு செய்",
+                footSebi: "செபி பதிவு செய்த ஆராய்ச்சி ஆய்வாளர்: INH000024806",
+                footDisc: "பொறுப்புத் துறப்பு: பத்திரச் சந்தையில் முதலீடுகள் சந்தை அபாயங்களுக்கு உட்பட்டவை. முதலீடு செய்வதற்கு முன் அனைத்து தொடர்புடைய ஆவணங்களையும் கவனமாகப் படிக்கவும்."
+            },
+            te: {
+                pageTitle: "ఆల్ఫానమీ ఫోలియోస్ - క్వాంటిటేటివ్ ఇన్వెస్ట్‌మెంట్ స్ట్రాటజీస్",
+                heroTitle: "ఆల్ఫానమీ ద్వారా స్థిరమైన ఆల్ఫా కోసం నిర్మించబడిన క్వాంటిటేటివ్ ఇన్వెస్ట్‌మెంట్ స్ట్రాటజీస్",
+                heroDesc: "క్రమబద్ధమైన, డేటా ఆధారిత పెట్టుబడి వ్యూహాల ద్వారా భారతీయ పెట్టుబడిదారులకు సంపదను సృష్టించే సెబి (SEBI) నమోదిత పరిశోధన ఆధారిత సంస్థ.",
+                mvTitle: "మా మిషన్ & విజన్",
+                lblMission: "మిషన్:",
+                valMission: "ఇన్‌స్టిట్యూషనల్-గ్రేడ్ సంపద నిర్వహణను సరళంగా, వేగంగా మరియు పారదర్శకంగా మార్చడం.",
+                lblVision: "విజన్:",
+                valVision: "ప్రతి పెట్టుబడిదారుడు ఒక ప్రొఫెషనల్ ఖచ్చితత్వంతో పెట్టుబడులను అమలు చేసే భవిష్యత్తు.",
+                cpTitle: "కోర్ ఫిలాసఫీ",
+                cp1: "మార్కెట్లు క్రమశిక్షణకు ప్రతిఫలాన్ని ఇస్తాయి, శబ్దానికి కాదు",
+                cp2: "అభిప్రాయాల కంటే డేటా ముఖ్యం",
+                cp3: "అంచనాల కంటే ప్రక్రియ ముఖ్యం",
+                secWhy: "ఆల్ఫానమీ ఫోలియోలను ఎందుకు ఎంచుకోవాలి?",
+                f1_t: "పరిశోధన-ఆధారిత", f1_d: "నిజమైన డేటాపై నిర్మించబడిన క్రమబద్ధమైన ఈక్విటీ పరిశోధన.",
+                f2_t: "పారదర్శకత", f2_d: "ప్రతి స్టాక్, ప్రతి నియమం, ప్రతి రీబ్యాలెన్సింగ్ తెలుసుకోండి.",
+                f3_t: "భావోద్వేగాలు లేవు", f3_d: "అల్గారిథమ్ ఆధారిత, ఊహలు లేవు.",
+                f4_t: "దీర్ఘకాలిక", f4_d: "స్థిరమైన వృద్ధి కోసం రూపొందించబడింది.",
+                f5_t: "నియంత్రిత", f5_d: "సెబి నమోదిత రీసెర్చ్ అనలిస్ట్ సంస్థ.",
+                f6_t: "రీబ్యాలెన్సింగ్", f6_d: "సమంతౌల్యం కోసం క్రమానుగత సర్దుబాట్లు.",
+                secFolios: "మా ఇన్వెస్ట్‌మెంట్ ఫోలియోలు",
+                p1_tag: "మైక్రోక్యాప్ ఈక్విటీలు",
+                p1_focus: "నిఫ్టీ మైక్రోక్యాప్ 250 ఇండెక్స్ నుండి 20 కేంద్రీకృత స్టాక్‌లు.",
+                p1_ideal: "ఎక్కువ రిస్క్ తీసుకునే సామర్థ్యంతో స్వల్పకాలిక ట్రెండ్స్ కోరుకునే చురుకైన పెట్టుబడిదారులు.",
+                p2_tag: "లార్జ్-క్యాప్ కాంట్రేరియన్",
+                p2_focus: "నిఫ్టీ 50 లో అత్యధికంగా పడిపోయిన 10 స్టాక్‌లను లక్ష్యంగా చేసుకోవడం.",
+                p2_ideal: "బ్లూ చిప్స్‌లో రికవరీ ఆధారిత అవకాశాలను వెతుకుతున్న పెట్టుబడిదారులు.",
+                p3_tag: "సెక్టార్ రొటేషన్",
+                p3_focus: "మొమెంటం ఆధారిత రంగాలు ర్యాంక్ చేసే 20 సెక్టార్ సూచీలలో సెక్టార్ రొటేషన్.",
+                p3_ideal: "అత్యంత బలమైన రంగంలో ఉండటం ద్వారా మార్కెట్ సగటును అధిగమించాలనుకునే పెట్టుబడిదారులు.",
+                p4_tag: "స్మార్ట్-బీటా ETF",
+                p4_focus: "10 వ్యూహాత్మక సూచీలను కలిగి ఉన్న నిఫ్టీ స్ట్రాటజీ ఇండెక్స్ (మొమెంటం, క్వాలిటీ, వాల్యూ మొదలైనవి).",
+                p4_ideal: "తక్కువ అస్థిరత మరియు 'సెట్-అండ్-ఫర్గెట్' విధానాన్ని ఇష్టపడే రిటైల్ పెట్టుబడిదారులు.",
+                lblFocus: "ఫోకస్:", lblMin: "కనీస పెట్టుబడి:", lblRebal: "రీబ్యాలెన్సింగ్:", lblIdeal: "దీనికి అనుకూలం:",
+                valQuarterly: "త్రైమాసికం", valMonthly: "నెలవారీ", valHalfYearly: "అర్ధ వార్షిక", valNA: "వర్తించదు",
+                lblPricing: "ధర ప్రణాళికలు", m3: "3 నెలలు", m6: "6 నెలలు", m12: "12 నెలలు", bestValTxt: "ఉత్తమ విలువ",
+                secReward: "రివార్డ్ సామర్థ్యం (రిస్క్-రివార్డ్ రేషియో)",
+                chartSub: "షార్ప్ రేషియో: ఎక్కువ రేషియో ఉంటే అస్థిరతకు ప్రతి యూనిట్‌కు మెరుగైన రాబడిని సూచిస్తుంది (ఫిబ్రవరి 2009 - జూన్ 2026 బ్యాక్‌టెస్ట్ డేటా ఆధారంగా)",
+                secMatrix: "వ్యూహాల పోలిక మ్యాట్రిక్స్",
+                thFeature: "ఫీచర్", matTheme: "కోర్ థీమ్", matRisk: "రిస్క్ ప్రొఫైల్", matRebal: "రీబ్యాలెన్సింగ్", matCap: "కనీస మూలధనం",
+                matV_mpm: "మైక్రోక్యాప్ మొమెంటం", matV_bcc: "బ్లూ-చిప్ కాంట్రేరియన్", matV_sr: "సెక్టార్ రొటేషన్", matV_sbs: "స్మార్ట్-బీటా శైలి",
+                matV_agg: "అగ్రెసివ్", matV_mod: "మితమైన", matV_cons: "కన్సర్వేటివ్",
+                ctaTitle: "మీ క్వాంటిటేటివ్ ఎడ్జ్‌ను నిర్మించుకోండి",
+                ctaDesc: "ఇన్‌స్టిట్యూషనల్ ఖచ్చితత్వంతో మీ నిర్మాణాత్మక పెట్టుబడి ప్రయాణాన్ని ప్రారంభించడానికి సిద్ధంగా ఉన్నారా?",
+                ctaBtn: "ఇప్పుడే నమోదు చేసుకోండి",
+                footSebi: "సెబి నమోదిత రీసెర్చ్ అనలిస్ట్: INH000024806",
+                footDisc: "డిస్క్లైమర్: సెక్యూరిటీల మార్కెట్లో పెట్టుబడులు మార్కెట్ నష్టాలకు లోబడి ఉంటాయి. పెట్టుబడి పెట్టడానికి ముందు సంబంధిత పత్రాలన్నింటినీ జాగ్రత్తగా చదవండి."
+            },
+            ml: {
+                pageTitle: "ആൽഫാനമി ഫോളിയോസ് - ക്വാണ്ടിറ്റേറ്റീവ് ഇൻവെസ്റ്റ്‌മെന്റ് സ്ട്രാറ്റജികൾ",
+                heroTitle: "ആൽഫാനമി രൂപകൽപ്പന ചെയ്ത സ്ഥിരതയാർന്ന ആൽഫയ്ക്കായുള്ള ക്വാണ്ടിറ്റേറ്റീവ് ഇൻവെസ്റ്റ്‌മെന്റ് സ്ട്രാറ്റജികൾ",
+                heroDesc: "സിസ്റ്റമാറ്റിക്, ഡാറ്റാധിഷ്ഠിത നിക്ഷേപ തന്ത്രങ്ങളിലൂടെ ഇന്ത്യൻ നിക്ഷേപകർക്കായി സമ്പത്ത് സൃഷ്ടിക്കുന്ന ഒരു സെബി (SEBI) രജിസ്റ്റർ ചെയ്ത റിസർച്ച് അധിഷ്ഠിത സ്ഥാപനം.",
+                mvTitle: "ഞങ്ങളുടെ മിഷനും വിഷനും",
+                lblMission: "മിഷൻ:",
+                valMission: "ഇൻസ്റ്റിറ്റ്യൂഷണൽ ഗ്രേഡ് വെൽത്ത് മാനേജ്‌മെന്റ് ലളിതവും വേഗതയേറിയതും സുതാര്യവുമാക്കുക.",
+                lblVision: "വിഷൻ:",
+                valVision: "ഓരോ നിക്ഷേപകനും ഒരു പ്രൊഫഷണലിന്റെ കൃത്യതയോടെ നിക്ഷേപങ്ങൾ നടത്തുന്ന ഒരു ഭാവി.",
+                cpTitle: "പ്രധാന തത്വശാസ്ത്രം",
+                cp1: "മാർക്കറ്റുകൾ അച്ചടക്കത്തിന് പ്രതിഫലം നൽകുന്നു, ബഹളത്തിനല്ല",
+                cp2: "അഭിപ്രായങ്ങൾക്കുമേൽ ഡാറ്റയ്ക്ക് മുൻഗണന",
+                cp3: "പ്രവചനങ്ങൾക്കുമേൽ പ്രക്രിയയ്ക്ക് മുൻഗണന",
+                secWhy: "എന്തുകൊണ്ട് ആൽഫാനമി ഫോളിയോകൾ തിരഞ്ഞെടുക്കണം?",
+                f1_t: "ഗവേഷണ പിന്തുണയുള്ളത്", f1_d: "യഥാർത്ഥ ഡാറ്റയിൽ നിർമ്മിച്ച സിസ്റ്റമാറ്റിക് ഇക്വിറ്റി റിസർച്ച്.",
+                f2_t: "സുതാര്യം", f2_d: "ഓരോ ഓഹരിയും, ഓരോ നിയമവും, ഓരോ റീബാലൻസിംഗും അറിയുക.",
+                f3_t: "വികാരങ്ങൾക്ക് സ്ഥാനമില്ല", f3_d: "അൽഗോരിതം അധിഷ്ഠിതം, ഊഹക്കച്ചവടമില്ല.",
+                f4_t: "ദീർഘകാലം", f4_d: "സുസ്ഥിരമായ വളർച്ചയ്ക്കായി രൂപകൽപ്പന ചെയ്തത്.",
+                f5_t: "നിയന്ത്രിതം", f5_d: "സെബി രജിസ്റ്റർ ചെയ്ത റിസർച്ച് അനലിസ്റ്റ് സ്ഥാപനം.",
+                f6_t: "റീബാലൻസിംഗ്", f6_d: "കൃത്യമായ വിന്യാസത്തിനായി ആനുകാലിക ക്രമീകരണങ്ങൾ.",
+                secFolios: "ഞങ്ങളുടെ ഇൻവെസ്റ്റ്‌മെന്റ് ഫോളിയോകൾ",
+                p1_tag: "മൈക്രോക്യാപ്പ് ഇക്വിറ്റികൾ",
+                p1_focus: "നിഫ്റ്റി മൈക്രോക്യാപ്പ് 250 ഇൻഡക്സിൽ നിന്നുള്ള 20 കേന്ദ്രീകൃത ഓഹരികൾ.",
+                p1_ideal: "ഉയർന്ന റിസ്ക് എടുക്കാൻ താല്പര്യമുള്ള, ഹ്രസ്വകാല ട്രെൻഡുകൾ തിരയുന്ന സജീവ നിക്ഷേപകർക്ക്.",
+                p2_tag: "ലാർജ്-ക്യാപ്പ് കോൺട്രേറിയൻ",
+                p2_focus: "നിഫ്റ്റി 50-ൽ ഏറ്റവും കൂടുതൽ ഇടിവ് നേരിട്ട 10 ഓഹരികളെ ലക്ഷ്യമിടുന്നു.",
+                p2_ideal: "ബ്ലൂ ചിപ്പുകളിൽ റിക്കവറി അധിഷ്ഠിത അവസരങ്ങൾ തേടുന്ന നിക്ഷേപകർക്ക്.",
+                p3_tag: "സെക്ടർ റൊട്ടേഷൻ",
+                p3_focus: "മൊമെന്റം അധിഷ്ഠിത സെക്ടറുകളെ റാങ്ക് ചെയ്യുന്ന 20 സെക്ടർ സൂചികകളിലുടനീളമുള്ള സെക്ടർ റൊട്ടേഷൻ.",
+                p3_ideal: "ഏറ്റവും ശക്തമായ സെക്ടറിൽ നിലയുറപ്പിച്ച് മാർക്കറ്റ് ശരാശരിയേക്കാൾ മികച്ച നേട്ടം കൊയ്യാൻ ആഗ്രഹിക്കുന്ന നിക്ഷേപകർക്ക്.",
+                p4_tag: "സ്മാർട്ട്-ബീറ്റ ETF",
+                p4_focus: "10 സ്ട്രാറ്റജി സൂചികകൾ ഉൾക്കൊള്ളുന്ന നിഫ്റ്റി സ്ട്രാറ്റജി ഇൻഡക്സ് (മൊമെന്റം, ക്വാളിറ്റി, വാല്യൂ മുതലായവ).",
+                p4_ideal: "കുറഞ്ഞ അസ്ഥിരതയും 'സെറ്റ്-ആൻഡ്-ഫോർഗെറ്റ്' രീതിയും തിരഞ്ഞെടുക്കുന്ന റീട്ടെയിൽ നിക്ഷേപകർക്ക്.",
+                lblFocus: "ഫോക്കസ്:", lblMin: "കുറഞ്ഞ നിക്ഷേപം:", lblRebal: "റീബാലൻസിംഗ്:", lblIdeal: "അനുയോജ്യം:",
+                valQuarterly: "ത്രൈമാസം", valMonthly: "പ്രതിമാസം", valHalfYearly: "അർദ്ധവാർഷികം", valNA: "ബാധകമല്ല",
+                lblPricing: "വിലവിവരപ്പട്ടിക", m3: "3 മാസം", m6: "6 മാസം", m12: "12 മാസം", bestValTxt: "മികച്ച മൂല്യം",
+                secReward: "റിവാർഡ് കാര്യക്ഷമത (റിസ്ക്-റിവാർഡ് അനുപാതം)",
+                chartSub: "ഷാർപ്പ് റേഷ്യോ: ഉയർന്ന റേഷ്യോ അസ്ഥിരതയുടെ ഓരോ യൂണിറ്റിനും മികച്ച വരുമാനത്തെ സൂചിപ്പിക്കുന്നു (ഫെബ്രുവരി 2009 - ജൂൺ 2026 വരെയുള്ള ബാക്ക്‌ടെസ്റ്റ് ഡാറ്റ അടിസ്ഥാനമാക്കി)",
+                secMatrix: "സ്ട്രാറ്റജി താരതമ്യ മാട്രിക്സ്",
+                thFeature: "ഫീച്ചർ", matTheme: "പ്രധാന തീം", matRisk: "റിസ്ക് പ്രൊഫൈൽ", matRebal: "റീബാലൻസിംഗ്", matCap: "കുറഞ്ഞ മൂലധനം",
+                matV_mpm: "മൈക്രോക്യാപ്പ് മൊമെന്റം", matV_bcc: "ബ്ലൂ-ചിപ്പ് കോൺട്രേറിയൻ", matV_sr: "സെക്ടർ റൊട്ടേഷൻ", matV_sbs: "സ്മാർട്ട്-ബീറ്റ ശൈലി",
+                matV_agg: "അഗ്രസ്സീവ്", matV_mod: "മിതമായ", matV_cons: "കൺസർവേറ്റീവ്",
+                ctaTitle: "നിങ്ങളുടെ ക്വാണ്ടിറ്റേറ്റീവ് എഡ്ജ് നിർമ്മിക്കുക",
+                ctaDesc: "ഇൻസ്റ്റിറ്റ്യൂഷണൽ കൃത്യതയോടെ നിങ്ങളുടെ ഘടനാപരമായ നിക്ഷേപ യാത്ര ആരംഭിക്കാൻ തയ്യാറാണോ?",
+                ctaBtn: "ഇപ്പോൾ രജിസ്റ്റർ ചെയ്യുക",
+                footSebi: "സെബി രജിസ്റ്റർ ചെയ്ത റിസർച്ച് അനലിസ്റ്റ്: INH000024806",
+                footDisc: "ഡിസ്ക്ലെയിമർ: സെക്യൂരിറ്റീസ് മാർക്കറ്റിലെ നിക്ഷേപങ്ങൾ മാർക്കറ്റ് റിസ്കുകൾക്ക് വിധേയമാണ്. നിക്ഷേപിക്കുന്നതിന് മുൻപ് അനുബന്ധ രേഖകളെല്ലാം ശ്രദ്ധാപൂർവ്വം വായിക്കുക."
+            }
+        };
+
+        function setLanguage(lang) {
+            // Update active button styling
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const data = translations[lang];
+            
+            // Text Content Updates
+            document.getElementById('page-title').textContent = data.pageTitle;
+            document.getElementById('hero-title').textContent = data.heroTitle;
+            document.getElementById('hero-desc').textContent = data.heroDesc;
+            document.getElementById('mv-title').textContent = data.mvTitle;
+            document.getElementById('lbl-mission').textContent = data.lblMission;
+            document.getElementById('val-mission').textContent = data.valMission;
+            document.getElementById('lbl-vision').textContent = data.lblVision;
+            document.getElementById('val-vision').textContent = data.valVision;
+            document.getElementById('cp-title').textContent = data.cpTitle;
+            document.getElementById('cp-1').textContent = data.cp1;
+            document.getElementById('cp-2').textContent = data.cp2;
+            document.getElementById('cp-3').textContent = data.cp3;
+            document.getElementById('sec-why').textContent = data.secWhy;
+            document.getElementById('f1-t').textContent = data.f1_t; document.getElementById('f1-d').textContent = data.f1_d;
+            document.getElementById('f2-t').textContent = data.f2_t; document.getElementById('f2-d').textContent = data.f2_d;
+            document.getElementById('f3-t').textContent = data.f3_t; document.getElementById('f3-d').textContent = data.f3_d;
+            document.getElementById('f4-t').textContent = data.f4_t; document.getElementById('f4-d').textContent = data.f4_d;
+            document.getElementById('f5-t').textContent = data.f5_t; document.getElementById('f5-d').textContent = data.f5_d;
+            document.getElementById('f6-t').textContent = data.f6_t; document.getElementById('f6-d').textContent = data.f6_d;
+            document.getElementById('sec-folios').textContent = data.secFolios;
+            
+            document.getElementById('p1-tag').textContent = data.p1_tag;
+            document.getElementById('p1-focus').textContent = data.p1_focus;
+            document.getElementById('p1-ideal').textContent = data.p1_ideal;
+            
+            document.getElementById('p2-tag').textContent = data.p2_tag;
+            document.getElementById('p2-focus').textContent = data.p2_focus;
+            document.getElementById('p2-ideal').textContent = data.p2_ideal;
+            
+            document.getElementById('p3-tag').textContent = data.p3_tag;
+            document.getElementById('p3-focus').textContent = data.p3_focus;
+            document.getElementById('p3-ideal').textContent = data.p3_ideal;
+            
+            document.getElementById('p4-tag').textContent = data.p4_tag;
+            document.getElementById('p4-focus').textContent = data.p4_focus;
+            document.getElementById('p4-ideal').textContent = data.p4_ideal;
+
+            // Global Labels
+            document.querySelectorAll('.lbl-focus').forEach(el => el.textContent = data.lblFocus);
+            document.querySelectorAll('.lbl-min').forEach(el => el.textContent = data.lblMin);
+            document.querySelectorAll('.lbl-rebal').forEach(el => el.textContent = data.lblRebal);
+            document.querySelectorAll('.lbl-ideal').forEach(el => el.textContent = data.lblIdeal);
+            document.querySelectorAll('.lbl-pricing').forEach(el => el.textContent = data.lblPricing);
+            document.querySelectorAll('.m3').forEach(el => el.textContent = data.m3);
+            document.querySelectorAll('.m6').forEach(el => el.textContent = data.m6);
+            document.querySelectorAll('.m12').forEach(el => el.textContent = data.m12);
+            document.querySelectorAll('.best-val-txt').forEach(el => el.textContent = data.bestValTxt);
+            
+            // Values
+            document.querySelectorAll('.val-quarterly').forEach(el => el.textContent = data.valQuarterly);
+            document.querySelectorAll('.val-monthly').forEach(el => el.textContent = data.valMonthly);
+            document.querySelectorAll('.val-half-yearly').forEach(el => el.textContent = data.valHalfYearly);
+            document.querySelectorAll('.val-na').forEach(el => el.textContent = data.valNA);
+
+            // Chart & Matrix
+            document.getElementById('sec-reward').textContent = data.secReward;
+            document.getElementById('chart-sub').textContent = data.chartSub;
+            document.getElementById('sec-matrix').textContent = data.secMatrix;
+            document.getElementById('th-feature').textContent = data.thFeature;
+            document.getElementById('mat-theme').textContent = data.matTheme;
+            document.getElementById('mat-risk').textContent = data.matRisk;
+            document.getElementById('mat-rebal').textContent = data.matRebal;
+            document.getElementById('mat-cap').textContent = data.matCap;
+
+            document.querySelectorAll('.mat-v-mpm').forEach(el => el.textContent = data.matV_mpm);
+            document.querySelectorAll('.mat-v-bcc').forEach(el => el.textContent = data.matV_bcc);
+            document.querySelectorAll('.mat-v-sr').forEach(el => el.textContent = data.matV_sr);
+            document.querySelectorAll('.mat-v-sbs').forEach(el => el.textContent = data.matV_sbs);
+            document.querySelectorAll('.mat-v-agg').forEach(el => el.textContent = data.matV_agg);
+            document.querySelectorAll('.mat-v-mod').forEach(el => el.textContent = data.matV_mod);
+            document.querySelectorAll('.mat-v-cons').forEach(el => el.textContent = data.matV_cons);
+
+            // CTA & Footer
+            document.getElementById('cta-title').textContent = data.ctaTitle;
+            document.getElementById('cta-desc').textContent = data.ctaDesc;
+            document.getElementById('cta-btn').textContent = data.ctaBtn;
+            document.getElementById('foot-sebi').textContent = data.footSebi;
+            document.getElementById('foot-disc').textContent = data.footDisc;
+        }
+    </script>
+</body>
+</html>
